@@ -1,4 +1,4 @@
-what is fucntional programming ?
+what is fucntional  programming ?
 
 ####Functional programming (FP) is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids changing state or mutable data. Here's a breakdown of key concepts:
 
