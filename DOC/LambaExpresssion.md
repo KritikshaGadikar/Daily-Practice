@@ -1,6 +1,6 @@
 # Lambda Expressions in Java and Kotlin
 
-Lambda expressions are a key feature of functional programming that allow you to create anonymous functions, i.e. functions without a name, and pass them around as if they were objects. They are particularly useful for situations where you need a concise way to represent an implementation of a single-method interface (functional interface) or a function that you intend to use only once.
+Lambda expressions are a key feature of functional programming that allow you to create anonymous functions, i.e., functions without a name, and pass them around as if they were objects. They are particularly useful for situations where you need a concise way to represent an implementation of a single-method interface (functional interface) or a function that you intend to use only once.
 
 ## Theory
 
@@ -51,3 +51,28 @@ public class LambdaExample {
 - `Predicate<String> startsWithJ = name -> name.startsWith("J");` is a lambda expression implementing the `Predicate` functional interface. It defines a condition that checks if a string starts with the letter "J".
 
 - `names.stream().filter(startsWithJ).forEach(System.out::println);` uses the lambda expression to filter the list of names. It applies the `startsWithJ` predicate to each element in the stream, retaining only those that meet the condition (names starting with "J"), and then prints each matching name to the console.
+
+
+
+## Kotlin Lambda Expression Example
+
+```kotlin
+fun main() {
+    // Define a list of strings
+    val names = listOf("John", "Jane", "Jack", "Jill")
+
+    // Use a lambda expression to filter names that start with 'J'
+    val startsWithJ: (String) -> Boolean = { name -> name.startsWith("J") }
+
+    // Print names that match the predicate
+    names.filter(startsWithJ).forEach(::println)
+}
+
+## Explanation
+
+**Kotlin Lambda Expression**:
+
+- `val startsWithJ: (String) -> Boolean = { name -> name.startsWith("J") }` is a lambda expression where `(String) -> Boolean` denotes the type of the lambda function. It defines a condition that checks if a string starts with the letter "J".
+
+- `names.filter(startsWithJ).forEach(::println)` applies the lambda expression to filter the list of names. It uses the `startsWithJ` lambda to retain only those names starting with "J" and then prints each matching name to the console.
+
