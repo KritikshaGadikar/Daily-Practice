@@ -43,6 +43,7 @@ public class LambdaExample {
              .forEach(System.out::println);
     }
 }
+```
 
 ## Explanation
 
@@ -54,7 +55,7 @@ public class LambdaExample {
 
 
 
-## Kotlin Lambda Expression Example
+***Kotlin Lambda Expression Example:**
 
 ```kotlin
 fun main() {
@@ -67,6 +68,7 @@ fun main() {
     // Print names that match the predicate
     names.filter(startsWithJ).forEach(::println)
 }
+```
 
 ## Explanation
 
@@ -75,4 +77,3 @@ fun main() {
 - `val startsWithJ: (String) -> Boolean = { name -> name.startsWith("J") }` is a lambda expression where `(String) -> Boolean` denotes the type of the lambda function. It defines a condition that checks if a string starts with the letter "J".
 
 - `names.filter(startsWithJ).forEach(::println)` applies the lambda expression to filter the list of names. It uses the `startsWithJ` lambda to retain only those names starting with "J" and then prints each matching name to the console.
-
