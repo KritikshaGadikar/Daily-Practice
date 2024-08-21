@@ -1,5 +1,3 @@
-# Vim Cheat Sheet
-
 ## Cursor Movement
 
 - **h**: Move the cursor to the left.
