@@ -15,7 +15,7 @@ In Java, functional interfaces are commonly used with lambda expressions and met
 - `java.util.function.Function<T, R>`
 - `java.util.function.Predicate<T>`
 - `java.util.function.Consumer<T>`
-- `java.util.function.Supplier<T>
+- `java.util.function.Supplier<T>`
 
 ## `Function<T, R>`
 
