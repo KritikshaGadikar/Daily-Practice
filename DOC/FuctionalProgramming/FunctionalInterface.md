@@ -15,6 +15,49 @@ In Java, functional interfaces are commonly used with lambda expressions and met
 - `java.util.function.Function<T, R>`
 - `java.util.function.Predicate<T>`
 - `java.util.function.Consumer<T>`
+- `java.util.function.Supplier<T>
+
+## `Function<T, R>`
+
+**Purpose**: Represents a function that accepts one argument of type `T` and produces a result of type `R`.
+
+**Example**:
+
+```java
+Function<String, Integer> stringLength = s -> s.length();
+        int length = stringLength.apply("Hello");
+```
+
+## `Predicate<T>`
+**Purpose**: Represents a function that accepts one argument of type T and returns a boolean result. It is often used for filtering or matching.
+
+**Example**:
+
+```java
+Predicate<Integer> isEven = n -> n % 2 == 0;
+boolean result = isEven.test(4);  // true
+```        
+
+##Consumer<T>
+**Purpose**: Represents a function that accepts one argument of type T and performs some operation on it, without returning any result.
+
+**Example**:
+
+```java
+Consumer<String> print = s -> System.out.println(s);
+print.accept("Hello, World!");
+```
+
+
+##Supplier<T>
+**Purpose**: Represents a function that does not take any arguments and returns a result of type T. It is typically used for lazy evaluation or deferred execution.
+
+**Example**:
+
+```java
+Supplier<Double> randomValue = () -> Math.random();
+double value = randomValue.get();
+```
 
 ### `@FunctionalInterface` Annotation
 
