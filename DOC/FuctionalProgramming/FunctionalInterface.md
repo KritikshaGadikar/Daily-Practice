@@ -39,7 +39,7 @@ Predicate<Integer> isEven = n -> n % 2 == 0;
 boolean result = isEven.test(4);  // true
 ```        
 
-##`Consumer<T>`
+## `Consumer<T>`
 
 **Purpose**: Represents a function that accepts one argument of type T and performs some operation on it, without returning any result.
 
@@ -51,7 +51,7 @@ print.accept("Hello, World!");
 ```
 
 
-##`Supplier<T>`
+## `Supplier<T>`
 
 **Purpose**: Represents a function that does not take any arguments and returns a result of type T. It is typically used for lazy evaluation or deferred execution.
 
