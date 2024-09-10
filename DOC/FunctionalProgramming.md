@@ -1,6 +1,6 @@
-what is fucntional  programming ?
+# what is fucntional  programming ?
 
-####Functional programming (FP) is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids changing state or mutable data. Here's a breakdown of key concepts:
+## Functional programming (FP) is a programming paradigm that treats computation as the evaluation of mathematical functions and avoids changing state or mutable data. Here's a breakdown of key concepts:
 
 - Pure Functions: Functions that, given the same input, always return the same output and have no side effects (e.g., modifying global variables or input arguments).
 
@@ -16,15 +16,15 @@ what is fucntional  programming ?
 
 - Recursion: Iteration in FP is often achieved through recursion rather than loops, as FP languages typically avoid mutable state.
 
-##Benefits of Functional Programming:
+## Benefits of Functional Programming:
 - Easier Debugging and Testing: Due to the predictability of pure functions.
 - Concurrency: Immutability and the lack of side effects make it easier to write concurrent programs.
 - Modular and Reusable Code: FP encourages writing small, reusable functions, which can be easily combined
 
-##Functional Programming in Kotlin:
+## Functional Programming in Kotlin:
 Kotlin is a multi-paradigm language that supports functional programming features such as higher-order functions, lambdas, and immutability, allowing developers to leverage FP principles alongside object-oriented programming.
 
-####Road map for functional programming:
+## Road map for functional programming:
 - Lambda Expressions
 - Functional interfaces
 - Streams

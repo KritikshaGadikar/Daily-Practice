@@ -1,6 +1,6 @@
-Conventional Commits
+# Conventional Commits
 
-The conventional commit message style is another way you can level up your commit messages. The conventional commits structure involves starting your commit message with a specified commit type. Commit types include:
+## The conventional commit message style is another way you can level up your commit messages. The conventional commits structure involves starting your commit message with a specified commit type. Commit types include:
 
 - Feat– feature
 - Fix– bug fixes
