@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsprojectpractice.R
 import com.example.thenewsapp.models.Article
 
@@ -21,11 +23,11 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
-        override fun areItemTheSame(oldItem: Article.newItem: Article): Boolean {
+        override fun areItemTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
 
-        override fun areContentsTheSame(oldItem: Article.newItem: Article): Boolean {
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
     }
@@ -41,7 +43,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             return differ.currentList.size
         }
 
-        private var onItemClickListener: ((Article)) -> Unit)? = null
+        private var onItemClickListener: ((Article) -> Unit)? = null
 
         override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
             val article = differ.currentList[position]
@@ -54,12 +56,20 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             articleDateTime = holder.itemView.findViewById(R.id.articleDateTime)
 
             holder.itemView.apply {
-                Glide.with(this).load(article,urlToImage).into(articleImage)
+                Glide.with(this).load(article.urlToImage).into(articleImage)
                 articleSource.text = article.source?.name
                 articleTitle.text = article.title
                 articleDescription.text = article.description
                 articleDateTime.text = article.publishedAt
-            }
 
+                setOnClickListener {
+                    onItemClickListener?.let {
+                        it(article)
+                }
+                }
+            }
+        }
+        fun setOnItemClickListener(listener: (Article) -> Unit){
+            onItemClickListener = listener
         }
     }
