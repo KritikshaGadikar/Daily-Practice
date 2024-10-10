@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.thenewsapp.models.NewsResponse
 import com.example.thenewsapp.repository.NewsRepository
 import com.example.thenewsapp.util.Resource
+import retrofit2.Response
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
 
@@ -19,4 +20,21 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
     val newSearchResponse: String? = null
     val newSearchQuery: String? = null
     var oldSearchQuery: String? = null
+
+    private fun handleHeadlineResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultResponse ->
+                headlinesPage++
+                if (headlineResponse == null) {
+                    headlineResponse = resultResponse
+                } else{
+                    val oldArticle = headlineResponse?.articles
+                    val newArticle = resultResponse.articles
+                    oldArticle?.addAll(newArticle)
+                }
+                    return  Resource.Success(headlineResponse ?: resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
+    }
 }
