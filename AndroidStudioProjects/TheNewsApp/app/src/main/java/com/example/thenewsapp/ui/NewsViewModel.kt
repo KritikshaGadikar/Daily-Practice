@@ -3,9 +3,12 @@ package com.example.thenewsapp.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.thenewsapp.models.Article
 import com.example.thenewsapp.models.NewsResponse
 import com.example.thenewsapp.repository.NewsRepository
 import com.example.thenewsapp.util.Resource
+import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
@@ -36,5 +39,15 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun addToFavourites(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+
+    fun getFavouriteNews() = newsRepository.getFavouriteNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
     }
 }
