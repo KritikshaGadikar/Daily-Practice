@@ -1,6 +1,9 @@
 package com.example.thenewsapp.ui
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,7 +16,7 @@ import retrofit2.Response
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
 
-    val headline: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+    val headlines: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var headlinesPage = 1
     var headlineResponse: NewsResponse? = null
 
@@ -48,6 +51,19 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
     fun getFavouriteNews() = newsRepository.getFavouriteNews()
 
     fun deleteArticle(article: Article) = viewModelScope.launch {
-        newsRepository.upsert(article)
+        newsRepository.deleteArticle(article)
+    }
+
+    fun internetConnection(context: Context): Boolean {
+        (context.getSystemService(Context.CONNECTIVITY_SERVICE) as  ConnectivityManager).apply {
+            return getNetworkCapabilities(activeNetwork)?.run {
+                when {
+                    hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                    else -> false
+                }
+            } ?: false
+        }
     }
 }
