@@ -12,7 +12,9 @@ import com.example.thenewsapp.models.NewsResponse
 import com.example.thenewsapp.repository.NewsRepository
 import com.example.thenewsapp.util.Resource
 import kotlinx.coroutines.launch
+import okio.IOException
 import retrofit2.Response
+import java.util.Locale.IsoCountryCode
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
 
@@ -64,6 +66,23 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
                     else -> false
                 }
             } ?: false
+        }
+    }
+
+    private suspend fun headlinesInternet(countryCode: String) {
+        headlines.postValue(Resource.Loading())
+        try {
+            if (internetConnection((this.getApplication()))) {
+                val response = newsRepository.getHeadlines(countryCode, headlinesPage)
+                headlines.postValue(handleHeadlineResponse(response))
+            }else {
+                headlines.postValue(Resource.Error("No internet connection"))
+            }
+        } catch (t: Throwable) {
+            when(t) {
+                is IOException -> headlines.postValue(Resource.Error("Unable to connect"))
+                else -> headlines.postValue(Resource.Error("No signal "))
+            }
         }
     }
 }
